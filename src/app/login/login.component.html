@@ -1,0 +1,24 @@
+
+<mat-card>
+    <form #f="ngForm" (ngSubmit)="entrar(f)" novalidate>
+<p>
+    <mat-form-field appearance="outline">
+      <mat-label>e-mail</mat-label>
+      <input  name="login" ngModel matInput placeholder="">
+      <!--  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> --> 
+     
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>password</mat-label>
+      <input type="password" name="senha" ngModel matInput placeholder="">
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> --> 
+      
+    </mat-form-field>
+  </p>
+  
+  <button [routerLink]="['/clientes']" mat-button>Entrar</button>  
+</form>  
+</mat-card>
+

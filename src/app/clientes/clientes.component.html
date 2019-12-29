@@ -1,0 +1,46 @@
+<ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner>
+
+<mat-expansion-panel style="width: 100%;">
+  <mat-expansion-panel-header >
+    <mat-panel-title>
+     Cliente: {{cliente.nome}}
+     </mat-panel-title>
+
+  </mat-expansion-panel-header>
+   
+
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="e-mail" [(ngModel)]="cliente.email" name="email" [disabled]="!isEditable">
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="telefone" [(ngModel)]="cliente.tel" name="tel" [disabled]="!isEditable">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="cep" [(ngModel)]="cliente.cep" name="cep" [disabled]="!isEditable">
+    </mat-form-field>
+    <br/>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="endereço" [(ngModel)]="cliente.endereco" name="endereco" [disabled]="!isEditable">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="bairro" [(ngModel)]="cliente.bairro" name="bairro" [disabled]="!isEditable">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="cidade" [(ngModel)]="cliente.cidade" name="cidade" [disabled]="!isEditable">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="estado" [(ngModel)]="cliente.estado" name="estado" [disabled]="!isEditable">
+    </mat-form-field>
+  </form>
+
+  <mat-action-row>
+    <button *ngIf="isEditable" mat-button style="float: left;" (click)="emitAddEvent()">Salvar</button>
+    <button  *ngIf="!isEditable" mat-button style="float: left;" (click)="onEdit()">Editar</button>
+    <button  *ngIf="isEditable" mat-button style="float: left;" (click)="offEdit()">Cancelar</button>
+  </mat-action-row>
+ 
+
+</mat-expansion-panel>
+
