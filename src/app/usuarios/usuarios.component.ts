@@ -23,10 +23,8 @@ export class UsuariosComponent implements OnInit {
               ) { }
 
   ngOnInit() {
-    this.spinnerService.show();
     this.userSrvc.getUsers().subscribe(v => {
       this.users = v;
-      console.log(this.users)
       this.spinnerService.hide();
     });
   }
@@ -34,8 +32,6 @@ export class UsuariosComponent implements OnInit {
   loadClient(param) {
     // tslint:disable-next-line: triple-equals
     if (this.idUser != param._id) {
-      this.spinnerService.show();
-      console.log(param);
       this.clienteSrvc.getClientsByIdUser(param._id).subscribe(v => {
       this.clientes = v;
       this.spinnerService.hide();
@@ -44,4 +40,9 @@ export class UsuariosComponent implements OnInit {
   }
     this.idUser = param._id;
 }
+
+getEvent(evento){
+  console.log(evento)
+}
+
 }

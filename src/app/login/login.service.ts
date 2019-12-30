@@ -43,7 +43,7 @@ export class LoginService {
     console.log('email', email);
     console.log('senha', senha);
     return this.http.post(
-      `http://localhost:3000/api/usuario/autenticar`,
+      `${this.url}usuario/autenticar`,
       { email, senha },
       { headers: header }
     );

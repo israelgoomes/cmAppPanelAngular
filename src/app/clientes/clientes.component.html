@@ -1,4 +1,4 @@
-<ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner>
+
 
 <mat-expansion-panel style="width: 100%;">
   <mat-expansion-panel-header >
@@ -7,7 +7,7 @@
      </mat-panel-title>
 
   </mat-expansion-panel-header>
-   
+  <ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner>
 
   <form class="example-form">
     <mat-form-field class="example-full-width">
@@ -38,6 +38,7 @@
   <mat-action-row>
     <button *ngIf="isEditable" mat-button style="float: left;" (click)="emitAddEvent()">Salvar</button>
     <button  *ngIf="!isEditable" mat-button style="float: left;" (click)="onEdit()">Editar</button>
+    <button  *ngIf="!isEditable" mat-button style="float: left;" (click)="deleteClient()">Excluir</button>
     <button  *ngIf="isEditable" mat-button style="float: left;" (click)="offEdit()">Cancelar</button>
   </mat-action-row>
  

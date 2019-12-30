@@ -2,7 +2,11 @@
 
 <div id="div">
   <mat-accordion>
+      <ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner>
+
     <mat-expansion-panel  *ngFor="let u of users" (click)="loadClient(u)">
+        <ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner>
+
       <mat-expansion-panel-header>
         <mat-panel-title>
          Usuários

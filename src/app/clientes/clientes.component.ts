@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ClienteService } from './cliente-service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteModel } from './cliente.model';
 
 
@@ -17,7 +17,7 @@ export class ClientesComponent implements OnInit {
 isEditable: boolean;
 @Output() public add = new EventEmitter();
 
-  constructor() { }
+  constructor(private clienteSrvc:ClienteService, private route: Router) { }
 
   ngOnInit() {
   }
@@ -27,8 +27,16 @@ onEdit(){
 offEdit(){
   this.isEditable = false
 }
-
+deleteClient(){
+  this.clienteSrvc.deleteClient(this.cliente._id).subscribe(()=>{
+    console.log(`Cliente excluido`)
+    this.route.navigate(['/usuarios'])
+  })
+}
   emitAddEvent(){
    this.add.emit(this.cliente)
+   this.clienteSrvc.alterClient(this.cliente, this.cliente._id).subscribe(v=>{
+     console.log(`Deu certo !!`)
+   })
   }
 }
