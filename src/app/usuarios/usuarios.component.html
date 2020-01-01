@@ -1,36 +1,5 @@
-<ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner>
-
+<!-- <ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner> -->
+<ngx-ui-loader> </ngx-ui-loader>
 <div id="div">
-  <mat-accordion>
-      <ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner>
-
-    <mat-expansion-panel  *ngFor="let u of users" (click)="loadClient(u)">
-        <ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner>
-
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-         Usuários
-        </mat-panel-title>
-        <mat-panel-description>
-         
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <section class="img">
-      <div class="circle">
-      <img *ngIf="u.foto" [src]="u.foto" width="200" height="200"/>
-      <img *ngIf="!u.foto" src="../../assets/imgs/user-1633249_1280.png" width="200" height="200"/>
-    </div>
-  </section>
-  <section class="img">
-   
-    <p>{{u?.nome}}</p>
-    <p>{{u?.email}}</p>
-</section>
-     
-<app-clientes *ngFor="let c of clientes" [cliente]="c" (add)="getEvent($event)"></app-clientes>
-    </mat-expansion-panel>
-  </mat-accordion>
-
-
+<app-usuario *ngFor="let u of users" [usuario]="u" [clientes]="clientes"></app-usuario>
 </div>

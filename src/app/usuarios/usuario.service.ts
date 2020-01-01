@@ -1,23 +1,19 @@
+import { configHelper } from './../configHelper';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoginService } from '../login/login.service';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { HttpProvider } from '../http.provider';
+import { UserModel } from './user.model';
 
 @Injectable()
 export class UsuarioService {
-
-    constructor(private http: HttpClient, 
-        private loginSrvc: LoginService,
-        private spinnerService: Ng4LoadingSpinnerService) {
-
-    }
+url;
+constructor(private http: HttpProvider) {
+    this.url = `${configHelper.URL}/usuario`;
+}
 
 
-    getUsers(): Observable<any> {
-        const header = this.loginSrvc.createHeader();
-        this.spinnerService.show()
-        return this.http.get('https://marcenarianovadesign.com.br/api/usuario', {headers: header});
+    getUsers(): Observable<UserModel[]> {
+        return this.http.get(this.url);
 
     }
 }

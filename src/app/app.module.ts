@@ -24,7 +24,26 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { UsuarioService } from './usuarios/usuario.service';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderConfig, SPINNER, POSITION, PB_DIRECTION  } from 'ngx-ui-loader';
+import { HttpProvider } from './http.provider';
+import { UsuarioComponent } from './usuarios/usuario/usuario.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
+
+
+const configSpinner: NgxUiLoaderConfig ={
+  bgsColor: 'red',
+  bgsPosition: POSITION.centerCenter,
+  bgsSize: 40,
+  bgsType: SPINNER.wanderingCubes, // background spinner type
+  fgsType: SPINNER.threeStrings, // foreground spinner type
+  pbDirection: PB_DIRECTION.leftToRight, // progress bar direction
+  pbThickness: 5, // progress bar thickness
+  text: "Carregando dados...",
+  fgsColor: '#527F76',
+  logoUrl: "../assets/imgs/logo_app.png"
+  
+}
 
 @NgModule({
   declarations: [
@@ -34,7 +53,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
     LoginComponent,
     MenuComponent,
     ProjetosComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    UsuarioComponent,
+
+  ],
+  entryComponents: [
+  
   ],
   imports: [
     BrowserModule,
@@ -49,13 +73,19 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatMenuModule,
     MatButtonModule,
     MatFormFieldModule,
+    HttpClientModule,
+    MatDialogModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule,
     RouterModule.forRoot(ROUTES),
-    Ng4LoadingSpinnerModule.forRoot()
+    NgxUiLoaderModule.forRoot(configSpinner)
+    //Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
     ClienteService,
     LoginService,
-    UsuarioService
+    UsuarioService,
+    HttpProvider
   ],
   bootstrap: [
     AppComponent

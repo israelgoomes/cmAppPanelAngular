@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from './usuario.service';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+// import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { GuardsCheckEnd } from '@angular/router';
 import { ClienteService } from '../clientes/cliente-service';
 import { ClienteModel } from '../clientes/cliente.model';
 import { UserModel } from './user.model';
-
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -16,33 +16,20 @@ export class UsuariosComponent implements OnInit {
   users: UserModel[] = [];
   clientes: ClienteModel[] = [];
   idUser;
-  grids: any;
   constructor(private userSrvc: UsuarioService,
-              private spinnerService: Ng4LoadingSpinnerService,
-              private clienteSrvc: ClienteService,
-              ) { }
+              private ngxService: NgxUiLoaderService
+              ) {
+              }
 
   ngOnInit() {
+    console.log('NgOInit')
+    // tslint:disable-next-line: triple-equals
+    if (this.users.length == 0) {
     this.userSrvc.getUsers().subscribe(v => {
       this.users = v;
-      this.spinnerService.hide();
+      this.ngxService.stop();
     });
-  }
-
-  loadClient(param) {
-    // tslint:disable-next-line: triple-equals
-    if (this.idUser != param._id) {
-      this.clienteSrvc.getClientsByIdUser(param._id).subscribe(v => {
-      this.clientes = v;
-      this.spinnerService.hide();
-    }
-    );
-  }
-    this.idUser = param._id;
 }
-
-getEvent(evento){
-  console.log(evento)
-}
+  }
 
 }

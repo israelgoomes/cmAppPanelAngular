@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Route } from '@angular/compiler/src/core';
 import { ClientesComponent } from '../clientes/clientes.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-login',
@@ -12,21 +13,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginSrvc: LoginService, private route: Router) { }
+  constructor(private loginSrvc: LoginService, 
+              private route: Router,
+              private ngxService: NgxUiLoaderService
+              ) { }
 
   ngOnInit() {
   }
-  
-  
-  entrar(f: NgForm){
+
+  login(f: NgForm){
     console.log(f.value.login)
     this.loginSrvc.authenticate(f.value.login, f.value.senha).subscribe(data=>{
+      console.log('token enviado', data.token)
       this.loginSrvc.registerLogin(data.token);
-      console.log('DADOS', data)
+      this.ngxService.stop();
       this.route.navigate(['/usuarios']);
-     // this.route.loaChildren(ClientesComponent)
-    //  this.router.navigate(['/heroes']);
-
     });
   }
 

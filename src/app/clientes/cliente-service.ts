@@ -1,44 +1,33 @@
+import { configHelper } from './../configHelper';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoginService } from '../login/login.service';
+// import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { HttpProvider } from '../http.provider';
 import { ClienteModel } from './cliente.model';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Injectable()
 export class ClienteService {
-url = `https://marcenarianovadesign.com.br/api/`
-constructor(private http: HttpClient, 
-          private loginSrvc: LoginService,
-          private spinnerService: Ng4LoadingSpinnerService
-          ) {
 
-
+url;
+constructor(private http: HttpProvider) {
+   this.url = `${configHelper.URL}/clientes`;
 }
 
 
-  getClients(): Observable<any>  {
-
-    const header = this.loginSrvc.createHeader();
-    console.log('Header cliente', header);
-    return this.http.get(`${this.url}/clientes`, {headers: header});
+  getClients(): Observable<ClienteModel[]>  {
+    return this.http.get(`${this.url}`);
   }
 
-  getClientsByIdUser(id: string): Observable<any>  {
-
-    const header = this.loginSrvc.createHeader();
-    console.log('Header cliente', header);
-    this.spinnerService.show()
-    return this.http.get(`https://marcenarianovadesign.com.br/api/clientes/usuario/${id}`, {headers: header});
+  getClientsByIdUser(id: string): Observable<ClienteModel[]>  {
+    return this.http.get(`${this.url}/usuario/${id}`);
   }
 
-  alterClient(data, id): Observable<any>{
-     const header = this.loginSrvc.createHeader();
-    return this.http.put(`${this.url}clientes/${id}`, data, {headers: header});
+  alterClient(data, id): Observable<ClienteModel[]>{
+    console.log('id chegou', id)
+    return this.http.put(`${this.url}`, data, id);
   }
 
-  deleteClient(id): Observable<any>{
-    const header = this.loginSrvc.createHeader();
-  return this.http.delete(`${this.url}clientes/${id}`, {headers: header})
+  deleteClient(id): Observable<ClienteModel[]>{
+  return this.http.delete(`${this.url}`, id)
   }
 
 }
