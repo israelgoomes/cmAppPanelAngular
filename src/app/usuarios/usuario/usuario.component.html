@@ -24,8 +24,18 @@
     <p>{{usuario?.nome}}</p>
     <p>{{usuario?.email}}</p>
 </section>
+
+
+<mat-action-row>
+
+  <button mat-button> 
+    Adicionar cliente</button>
+
+</mat-action-row>
       <app-clientes *ngFor="let c of clientes" [cliente]="c" (add)="getEvent($event)"></app-clientes> 
     </mat-expansion-panel>
+
+   
   </mat-accordion>
 
 

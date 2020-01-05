@@ -28,6 +28,8 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderConfig, SPINNER, P
 import { HttpProvider } from './http.provider';
 import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
+import { FormClienteComponent } from './form-cliente/form-cliente.component';
 
 
 
@@ -55,6 +57,8 @@ const configSpinner: NgxUiLoaderConfig ={
     ProjetosComponent,
     UsuariosComponent,
     UsuarioComponent,
+    CadastroClienteComponent,
+    FormClienteComponent,
 
   ],
   entryComponents: [
