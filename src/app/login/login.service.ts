@@ -10,7 +10,7 @@ export class LoginService {
   }
   authenticate(email, senha): Observable<any> {
     return this.http.post(
-      `${this.url}usuario/autenticar`,
+      `${this.url}/usuario/autenticar`,
       { email, senha },
     );
   }

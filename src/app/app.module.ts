@@ -29,8 +29,8 @@ import { HttpProvider } from './http.provider';
 import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
-import { FormClienteComponent } from './form-cliente/form-cliente.component';
-
+import { FormClientComponent } from './form-client/form-client.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const configSpinner: NgxUiLoaderConfig ={
@@ -58,7 +58,7 @@ const configSpinner: NgxUiLoaderConfig ={
     UsuariosComponent,
     UsuarioComponent,
     CadastroClienteComponent,
-    FormClienteComponent,
+    FormClientComponent,
 
   ],
   entryComponents: [
@@ -81,6 +81,7 @@ const configSpinner: NgxUiLoaderConfig ={
     MatDialogModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
     NgxUiLoaderModule.forRoot(configSpinner)
     //Ng4LoadingSpinnerModule.forRoot()

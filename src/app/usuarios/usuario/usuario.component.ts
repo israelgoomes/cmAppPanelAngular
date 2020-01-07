@@ -11,23 +11,23 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 })
 export class UsuarioComponent implements OnInit {
   idUser;
-  @Input() usuario: UserModel;
+  @Input() usuarios: UserModel[] = [];
   @Input () clientes: ClienteModel[] = [];
   constructor(private clienteSrvc: ClienteService,
               private ngxService:NgxUiLoaderService
     ) { }
 
   ngOnInit() {
-    console.log('user', this.usuario)
+    console.log('user', this.usuarios)
     this.idUser = null;
   }
 
 
   loadClient(param) {
-    console.log(this.idUser)
     if (this.idUser != param._id || this.idUser == null) {
    this.ngxService.start();
    this.clienteSrvc.getClientsByIdUser(param._id).subscribe(v => {
+     console.log(v)
    this.clientes = v;
    this.ngxService.stop();
  }
