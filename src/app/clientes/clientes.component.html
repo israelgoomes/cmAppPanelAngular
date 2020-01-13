@@ -1,6 +1,6 @@
 
 
-<mat-expansion-panel style="width: 100%;">
+<mat-expansion-panel style="width: 100%;" *ngFor="let cliente of clientes">
   <mat-expansion-panel-header >
     <mat-panel-title>
      Cliente: {{cliente.nome}}
@@ -10,6 +10,10 @@
   <!-- <ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner> --> 
 
   <form class="example-form">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="nome" [(ngModel)]="cliente.nome" name="nome" [disabled]="!isEditable">
+        </mat-form-field>
+
     <mat-form-field class="example-full-width">
       <input matInput placeholder="e-mail" [(ngModel)]="cliente.email" name="email" [disabled]="!isEditable">
     </mat-form-field>
@@ -36,9 +40,10 @@
   </form>
 
   <mat-action-row>
-    <button *ngIf="isEditable" mat-button style="float: left;" (click)="emitAddEvent()">Salvar</button>
-    <button  *ngIf="!isEditable" mat-button style="float: left;" (click)="onEdit()">Editar</button>
-    <button  *ngIf="!isEditable" mat-button style="float: left;" (click)="deleteClient()">Excluir</button>
+
+    <button *ngIf="isEditable" mat-button style="float: left;" (click)="emitAddEvent(cliente)">Salvar</button>
+    <button  *ngIf="!isEditable" mat-button style="float: left;" (click)="onEdit(cliente)">Editar</button>
+    <button  *ngIf="!isEditable" mat-button style="float: left;" (click)="deleteClient(cliente)">Excluir</button>
     <button  *ngIf="isEditable" mat-button style="float: left;" (click)="offEdit()">Cancelar</button>
   </mat-action-row>
  

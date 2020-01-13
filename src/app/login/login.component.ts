@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { NgForm } from '@angular/forms';
-import { Route } from '@angular/compiler/src/core';
-import { ClientesComponent } from '../clientes/clientes.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { configHelper } from '../configHelper';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +18,11 @@ export class LoginComponent implements OnInit {
               ) { }
 
   ngOnInit() {
+    console.log(localStorage.getItem(configHelper.storageKeys.token))
+    if(localStorage.getItem(configHelper.storageKeys.token)){
+      console.log('teste')
+      this.route.navigate(['/usuarios'])
+    }
   }
 
   login(f: NgForm){
@@ -27,7 +31,8 @@ export class LoginComponent implements OnInit {
       console.log('token enviado', data.token)
       this.loginSrvc.registerLogin(data.token);
       this.ngxService.stop();
-      this.route.navigate(['/usuarios']);
+      this.route.navigate(['/app'])
+      window.location.reload();
     });
   }
 

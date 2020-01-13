@@ -1,0 +1,33 @@
+<mat-card>
+  <div>
+    <h1>Cadastro de cliente</h1>
+  </div>
+  <form [formGroup]="formGroup">
+    <mat-form-field class="example-full-width">
+      <input formControlName="nome" matInput placeholder="Nome" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="email" matInput placeholder="E-mail" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="tel" matInput placeholder="Telefone" value="">
+    </mat-form-field> 
+    <mat-form-field class="example-full-width">
+      <input formControlName="endereco" matInput placeholder="Endereço" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="bairro" matInput placeholder="Bairro" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="cep" matInput placeholder="Cep" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="cidade" matInput placeholder="Cidade" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="estado" matInput placeholder="Estado" value="">
+    </mat-form-field>
+    <hr>
+    <button mat-button (click)="emitEvent()">Cadastrar</button>
+  </form>
+</mat-card>

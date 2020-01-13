@@ -28,10 +28,9 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderConfig, SPINNER, P
 import { HttpProvider } from './http.provider';
 import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import { FormComponent } from './form/form.component';
+import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
+import { FormClientComponent } from './form-client/form-client.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TestesComponent } from './testes/testes.component';
-
 
 const configSpinner: NgxUiLoaderConfig ={
   bgsColor: 'red',
@@ -57,8 +56,8 @@ const configSpinner: NgxUiLoaderConfig ={
     ProjetosComponent,
     UsuariosComponent,
     UsuarioComponent,
-    FormComponent,
-    TestesComponent,
+    CadastroClienteComponent,
+    FormClientComponent,
 
   ],
   entryComponents: [

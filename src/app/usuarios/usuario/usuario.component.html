@@ -1,7 +1,7 @@
   <mat-accordion>
       <!-- <ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner> --> 
 
-    <mat-expansion-panel (click)="loadClient(usuario)">
+    <mat-expansion-panel *ngFor="let usuario of usuarios" (click)="loadClient(usuario)">
         <!-- <ng4-loading-spinner [timeout]="100000"> </ng4-loading-spinner>  -->
 
       <mat-expansion-panel-header>
@@ -24,8 +24,17 @@
     <p>{{usuario?.nome}}</p>
     <p>{{usuario?.email}}</p>
 </section>
-      <app-clientes *ngFor="let c of clientes" [cliente]="c" (add)="getEvent($event)"></app-clientes> 
+
+
+<mat-action-row>
+    <button mat-button style="float: left;" [routerLink]="['/cadastro-cliente', usuario._id]">Adicionar</button>
+
+
+</mat-action-row>
+      <app-clientes [clientes]="clientes" (add)="getEvent($event)"></app-clientes> 
     </mat-expansion-panel>
+
+   
   </mat-accordion>
 
 

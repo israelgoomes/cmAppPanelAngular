@@ -1,8 +1,8 @@
+import { ClienteModel } from 'src/app/clientes/cliente.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ClienteService } from './cliente-service';
 // import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ClienteModel } from './cliente.model';
+import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 
@@ -14,7 +14,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 export class ClientesComponent implements OnInit {
 
 
-@Input() cliente: ClienteModel;
+@Input() clientes: ClienteModel[];
 isEditable: boolean;
 @Output() public add = new EventEmitter();
 
@@ -31,12 +31,12 @@ onEdit() {
 offEdit() {
   this.isEditable = false;
 }
-deleteClient() {
+deleteClient(cliente: ClienteModel) {
 
-  let r = confirm(`Deseja realmente excluir o cliente ${this.cliente.nome} ?`);
+  let r = confirm(`Deseja realmente excluir o cliente ${cliente.nome} ?`);
 
   if (r == true) {
-  this.clienteSrvc.deleteClient(this.cliente._id).subscribe(() => {
+  this.clienteSrvc.deleteClient(cliente._id).subscribe(() => {
     console.log(`Cliente excluido`);
     this.ngxService.stop();
     window.location.reload();
@@ -44,10 +44,10 @@ deleteClient() {
   });
 }
 }
-  emitAddEvent() {
-   this.add.emit(this.cliente);
-   console.log('cliente', this.cliente);
-   this.clienteSrvc.alterClient(this.cliente, this.cliente._id).subscribe(v => {
+  emitAddEvent(cliente: ClienteModel) {
+   this.add.emit(cliente);
+   console.log('cliente', cliente);
+   this.clienteSrvc.alterClient(cliente, cliente._id).subscribe(v => {
      this.isEditable = false;
     //  this.ngxService.stop();
      window.location.reload();

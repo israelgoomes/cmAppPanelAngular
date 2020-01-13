@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { configHelper } from '../configHelper';
 
 @Component({
   selector: 'app-menu',
@@ -11,5 +12,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
   }
-
+sair(){
+  localStorage.removeItem(configHelper.storageKeys.token)
+  window.location.reload();
+}
 }

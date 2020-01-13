@@ -21,6 +21,10 @@ constructor(private http: HttpProvider) {
     return this.http.get(`${this.url}/usuario/${id}`);
   }
 
+  includesClient(data: ClienteModel): Observable<ClienteModel[]>{
+    return this.http.post(`${this.url}`, data);
+  }
+
   alterClient(data, id): Observable<ClienteModel[]>{
     console.log('id chegou', id)
     return this.http.put(`${this.url}`, data, id);
