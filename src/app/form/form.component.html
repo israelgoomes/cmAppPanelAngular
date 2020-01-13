@@ -1,0 +1,15 @@
+<form [formGroup]="formGroup">
+
+    <label>
+        Nome:
+        <input type="text" formControlName="name"/>
+    </label>
+    
+    <label>
+        sobre nome:
+        <input type="text" formControlName="lastName"/>
+    </label>
+
+    <button (click)="emitEvent()">Teste</button>
+
+</form>

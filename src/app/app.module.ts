@@ -28,7 +28,9 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderConfig, SPINNER, P
 import { HttpProvider } from './http.provider';
 import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import { FormComponent } from './form/form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TestesComponent } from './testes/testes.component';
 
 
 const configSpinner: NgxUiLoaderConfig ={
@@ -55,6 +57,8 @@ const configSpinner: NgxUiLoaderConfig ={
     ProjetosComponent,
     UsuariosComponent,
     UsuarioComponent,
+    FormComponent,
+    TestesComponent,
 
   ],
   entryComponents: [
@@ -77,6 +81,7 @@ const configSpinner: NgxUiLoaderConfig ={
     MatDialogModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
     NgxUiLoaderModule.forRoot(configSpinner)
     //Ng4LoadingSpinnerModule.forRoot()
