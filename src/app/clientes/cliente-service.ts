@@ -27,7 +27,7 @@ constructor(private http: HttpProvider) {
 
   alterClient(data, id): Observable<ClienteModel[]>{
     console.log('id chegou', id)
-    return this.http.put(`${this.url}`, data, id);
+    return this.http.put(`${this.url}/${id}`, data);
   }
 
   deleteClient(id): Observable<ClienteModel[]>{

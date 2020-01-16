@@ -1,3 +1,50 @@
-<p>
-  projetos works!
-</p>
+<mat-expansion-panel style="width: 100%;">
+    <mat-expansion-panel-header >
+      <mat-panel-title>
+       Projeto: {{projeto.tituloProjeto}}
+       </mat-panel-title>
+  
+    </mat-expansion-panel-header>
+    <form [formGroup]="formProject">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Título" formControlName="tituloProjeto">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Descriçāo" formControlName="descricaoProjeto">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Preço" formControlName="preco">
+      </mat-form-field>
+
+
+<web-select *ngIf="isEditable" formControlName="cliente" (itemSelected)="getEvent($event)" [vlInicial]="projeto.cliente.nome" [items]="clientes" label="cliente" vlAtribuido="_id" view="nome"></web-select>
+<mat-form-field *ngIf="!isEditable" class="example-full-width">
+  <input matInput placeholder="Cliente" disabled [value]="projeto.cliente.nome">
+</mat-form-field>
+    
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Email cliente" disabled [value]="projeto.cliente.email">
+</mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input id="inOut" matInput placeholder="Status" [value]="projeto.status ? 'Ativo' : 'Inativo'" disabled>
+      </mat-form-field>
+    </form>
+    
+    
+   
+  
+    <mat-action-row>
+  
+    <button mat-button style="float: left;" *ngIf="isEditable" (click)="salvar()">Salvar</button>
+    <button mat-button style="float: left;" *ngIf="projeto.status && isEditable" (click)="activeOrDisables()">Desativar Cliente</button>
+    <button mat-button style="float: left;" *ngIf="!projeto.status && isEditable" (click)="activeOrDisables()">Ativar Cliente</button>
+    <button mat-button style="float: left;" *ngIf="!isEditable" (click)="enableEdit()">Editar</button>
+    <button mat-button style="float: left;" *ngIf="isEditable" (click)="enableEdit()">Cancelar</button>
+
+    </mat-action-row>
+   
+  
+  </mat-expansion-panel>

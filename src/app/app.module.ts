@@ -1,3 +1,4 @@
+import { ProjetoService } from './projetos/projeto.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -19,6 +20,7 @@ import {MatButtonModule} from '@angular/material/button'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 import { ProjetosComponent } from './projetos/projetos.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { UsuariosComponent } from './usuarios/usuarios.component';
@@ -31,6 +33,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
 import { FormClientComponent } from './form-client/form-client.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { WebSelectComponent } from './web-select/web-select.component';
+
 
 const configSpinner: NgxUiLoaderConfig ={
   bgsColor: 'red',
@@ -58,6 +62,7 @@ const configSpinner: NgxUiLoaderConfig ={
     UsuarioComponent,
     CadastroClienteComponent,
     FormClientComponent,
+    WebSelectComponent,
 
   ],
   entryComponents: [
@@ -76,19 +81,21 @@ const configSpinner: NgxUiLoaderConfig ={
     MatMenuModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatSelectModule,
     HttpClientModule,
     MatDialogModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule,
     ReactiveFormsModule,
+    NgxUiLoaderModule.forRoot(configSpinner),
     RouterModule.forRoot(ROUTES),
-    NgxUiLoaderModule.forRoot(configSpinner)
     //Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
     ClienteService,
     LoginService,
     UsuarioService,
+    ProjetoService,
     HttpProvider
   ],
   bootstrap: [

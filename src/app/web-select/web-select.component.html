@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-label>{{label}}</mat-label>
+  <mat-select [(value)]="vlInicial" selected>
+    <mat-option id="mat-teste" (click)="setValue(item[vlAtribuido])" *ngFor="let item of items" name="teste" [value]="item[vlAtribuido]">
+      {{item[view]}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+

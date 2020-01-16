@@ -32,10 +32,10 @@ export class HttpProvider {
         return this.httpClient.get(url, {headers: header});
     }
 
-    public put(url, data, id): Observable<any> {
+    public put(url, data): Observable<any> {
         const header = this.createHeader();
-        // this.ngxService.start();
-        return this.httpClient.put(`${url}/${id}`, data, {headers: header});
+        this.ngxService.start();
+        return this.httpClient.put(url, data, {headers: header});
     }
 
     public post(url, data): Observable<any> {

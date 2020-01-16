@@ -1,3 +1,5 @@
+import { ProjetoModel } from './../projetos/projeto.model';
+import { ProjetoService } from './../projetos/projeto.service';
 import { ClienteModel } from 'src/app/clientes/cliente.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ClienteService } from './cliente-service';
@@ -17,10 +19,12 @@ export class ClientesComponent implements OnInit {
 @Input() clientes: ClienteModel[];
 isEditable: boolean;
 @Output() public add = new EventEmitter();
-
+idClient: any;
+projetos: ProjetoModel[];
   constructor(private clienteSrvc: ClienteService,
               private route: Router,
-              private ngxService: NgxUiLoaderService
+              private ngxService: NgxUiLoaderService,
+              private projetoSrvc: ProjetoService
               ) { }
 
   ngOnInit() {
@@ -37,7 +41,6 @@ deleteClient(cliente: ClienteModel) {
 
   if (r == true) {
   this.clienteSrvc.deleteClient(cliente._id).subscribe(() => {
-    console.log(`Cliente excluido`);
     this.ngxService.stop();
     window.location.reload();
     // this.route.navigate(['/usuarios']);
@@ -46,7 +49,6 @@ deleteClient(cliente: ClienteModel) {
 }
   emitAddEvent(cliente: ClienteModel) {
    this.add.emit(cliente);
-   console.log('cliente', cliente);
    this.clienteSrvc.alterClient(cliente, cliente._id).subscribe(v => {
      this.isEditable = false;
     //  this.ngxService.stop();
@@ -54,4 +56,19 @@ deleteClient(cliente: ClienteModel) {
 
     });
   }
+
+  loadProjects(cliente: ClienteModel){
+    if(this.idClient != cliente._id){
+    this.projetoSrvc.getProjectByIdClient(cliente._id).subscribe(v=>{
+        this.projetos = v;
+        this.ngxService.stop();
+    })
+  }
+  this.idClient = cliente._id;
+}
+
+editProject(event: ProjetoModel){
+this.projetoSrvc.editProject(event._id, event);
+}
+
 }

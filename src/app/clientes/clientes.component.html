@@ -1,6 +1,6 @@
 
 
-<mat-expansion-panel style="width: 100%;" *ngFor="let cliente of clientes">
+<mat-expansion-panel style="width: 100%;" *ngFor="let cliente of clientes" (click)="loadProjects(cliente)">
   <mat-expansion-panel-header >
     <mat-panel-title>
      Cliente: {{cliente.nome}}
@@ -38,6 +38,8 @@
       <input matInput placeholder="estado" [(ngModel)]="cliente.estado" name="estado" [disabled]="!isEditable">
     </mat-form-field>
   </form>
+
+  <app-projetos *ngFor="let projeto of projetos" [projeto]="projeto" (getResult)="editProject($event)"></app-projetos>
 
   <mat-action-row>
 
